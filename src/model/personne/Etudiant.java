@@ -3,16 +3,19 @@ package model.personne;
 import model.Matiere;
 
 public class Etudiant extends Personne{
-
-    private String numEtu;
     private int age;
+    private String noEt;
 
-    public Etudiant(String nom, String prenom, String numEtu, int age) {
+    public Etudiant(String nom, String prenom, int age, String noEt) {
         super(nom, prenom);
-        this.numEtu = numEtu;
         this.age = age;
+        this.noEt = noEt;
     }
 
+    @Override
+    public boolean possedeMatiere(Matiere m) {
+        return false;
+    }
 
     @Override
     public Matiere getMatiere() {
@@ -21,8 +24,14 @@ public class Etudiant extends Personne{
 
     @Override
     public String afficher() {
-        return "Etudiant "+getPrenom()+" "+getNom()+" (noEt="+numEtu+") "+age+" ans";
+        return "Etudiant "+getPrenom() + " " + getNom() + " (noEt=" + noEt + ")" + age + " ans";
     }
 
+    public int getAge() {
+        return age;
+    }
 
+    public String getNoEt() {
+        return noEt;
+    }
 }

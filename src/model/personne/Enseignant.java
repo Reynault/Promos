@@ -1,35 +1,50 @@
 package model.personne;
 
 import model.Matiere;
+import model.personne.calculAnnuel.SalaireAnnuel;
 
-public abstract class Enseignant extends Personne{
+public class Enseignant extends Personne{
 
-    private Matiere matiere;
-    private int nbHeure;
-    private static int salaireHoraire = 30;
+    private static int salaireHeure = 30;
+    private int nbHeures;
+    private SalaireAnnuel sa;
+    private Matiere m;
 
-    public Enseignant(String nom, String prenom, Matiere matiere, int nbHeure) {
+    public Enseignant(String nom, String prenom, int nbHeures, SalaireAnnuel sa, Matiere m) {
         super(nom, prenom);
-        this.matiere = matiere;
-        this.nbHeure = nbHeure;
+        this.nbHeures = nbHeures;
+        this.sa = sa;
+        this.m = m;
     }
 
-    public String afficher(){
-        return getPrenom() + " " + getNom() + " en " + matiere.afficher() + " , salaire = "+calculerSA();
+    public int calculSA(SalaireAnnuel sa){
+        return sa.calculerSA(salaireHeure, nbHeures);
     }
 
-    public abstract int calculerSA();
-
-    public int getNbHeure() {
-        return nbHeure;
+    @Override
+    public boolean possedeMatiere(Matiere m) {
+        return this.m.equals(m);
     }
 
+    @Override
     public Matiere getMatiere() {
-        return matiere;
+        return m;
     }
 
-    public static int getSalaireHoraire() {
-        return salaireHoraire;
+    @Override
+    public String afficher() {
+        return getPrenom() + " " + getNom() + " en " + m.getNom() + " , salaire = " + calculSA(sa);
     }
 
+    public static int getSalaireHeure() {
+        return salaireHeure;
+    }
+
+    public int getNbHeures() {
+        return nbHeures;
+    }
+
+    public Matiere getM() {
+        return m;
+    }
 }

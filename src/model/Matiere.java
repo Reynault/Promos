@@ -2,22 +2,16 @@ package model;
 
 import java.util.Objects;
 
-public class Matiere{
-
+public class Matiere {
     private String nom;
 
     public Matiere(String nom) {
         this.nom = nom;
     }
 
-    public String afficher(){
-        return nom;
-    }
-
     public String getNom() {
         return nom;
     }
-
 
     @Override
     public boolean equals(Object o) {
